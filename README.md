@@ -34,13 +34,17 @@ sudo apt upgrade
 **2.编译所有代码**
 
 > 如果没装 catkin tools 可以用 catkin_make 编译，如果出现依赖问题就多编几次。
+> 
 > 一定要关闭所有其它应用程序然后用命令行编译，如果内存爆了就多编几次。多编的时候不需要全删直接接着编就好了，之前编过的会自动跳过。
+> 
+> **注意**： `catkin_make` 和 `catkin build` 不能混用
 
 在项目路径下,先对两个包进行编译
 ```
 catkin build quadrotor_msgs mav_msg
 ```
 
+然后再
 ```
 catkin build
 ```
@@ -62,6 +66,16 @@ run.sh 中包含两个 launch
 
 前一个启动 rviz 和 gazebo 仿真器
 后一个启动 planner，这部分是需要我们完成的
+
+### VSCODE 插件
+
+Vscode 插件安装参考[我的这篇知乎回答](https://zhuanlan.zhihu.com/p/365384185)
+
+相关文件已经加到 github 仓库里面了，克隆仓库并装好插件之后直接重启 Vscode 即可。
+
+重启后可以实现一键编译 `ctrl+shift+B` ，代码自动跳转，自动提示，使用 **gdb debug** 等功能
+
+> 如果使用 noetic 系统，需要将 .vscode 文件夹下面的所有东西都改成 noetic
 
 ## 接口说明
 1.**Planner**
