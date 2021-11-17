@@ -46,6 +46,8 @@ catkin build
 ```
 
 ## 使用说明
+
+### 启动
 ```
 source devel/setup.bash
 chmod 777 run.sh
@@ -53,15 +55,67 @@ chmod 777 run.sh
 ```
 开始运行后等待15s左右,rviz和gazebo陆续打开,无人机会先自动飞一段轨迹完成vins初始化,完成结束后,可以在rviz里按快捷键G,然后使用鼠标在地图中选择一个终点,触发轨迹规划,无人机自动起飞.
 
+### launch 文件
+run.sh 中包含两个 launch
+- roslaunch rotors_gazebo simulator.launch
+- roslaunch ego_planner run_in_exp.launch
+
+前一个启动 rviz 和 gazebo 仿真器
+后一个启动 planner，这部分是需要我们完成的
+
 ## 接口说明
 1.**Planner**
 - Subscribers
-    位姿信息:`/hummingbird/odometry_sensor1/odometry`
-    深度图:`/hummingbird/vi_sensor/camera_depth/depth/disparity`
-    终点:`/hummingbird/goal`
+  - 位姿信息:`/hummingbird/odometry_sensor1/odometry`
+  - 深度图:`/hummingbird/vi_sensor/camera_depth/depth/disparity`
+  - 终点:`/hummingbird/goal`
 - Publishers
-    控制:`/hummingbird/command/trajectory`
+  - 控制:`/hummingbird/command/trajectory`
 
+2. **Simulator**
+
+
+## 文件结构
+
+```
+├── ./CMakeLists.txt -> /opt/ros/noetic/share/catkin/cmake/toplevel.cmake
+├── ./mav_comm
+│   ├── ./mav_comm/mav_comm
+│   ├── ./mav_comm/mav_msgs
+│   ├── ./mav_comm/mav_planning_msgs
+│   ├── ./mav_comm/mav_state_machine_msgs
+│   ├── ./mav_comm/mav_system_msgs
+│   └── ./mav_comm/README.md
+├── ./planner
+│   ├── ./planner/ball_detect
+│   ├── ./planner/bspline_opt
+│   ├── ./planner/drone_detect
+│   ├── ./planner/path_searching
+│   ├── ./planner/plan_env
+│   ├── ./planner/plan_manage
+│   ├── ./planner/rosmsg_tcp_bridge
+│   └── ./planner/traj_utils
+├── ./rotors_simulator
+│   ├── ./rotors_simulator/README.md
+│   ├── ./rotors_simulator/rotors_comm
+│   ├── ./rotors_simulator/rotors_control
+│   ├── ./rotors_simulator/rotors_demos.rosinstall
+│   ├── ./rotors_simulator/rotors_description
+│   ├── ./rotors_simulator/rotors_evaluation
+│   ├── ./rotors_simulator/rotors_gazebo
+│   ├── ./rotors_simulator/rotors_gazebo_plugins
+│   ├── ./rotors_simulator/rotors_joy_interface
+│   ├── ./rotors_simulator/rotors_minimal.rosinstall
+│   └── ./rotors_simulator/rotors_simulator
+└── ./utilities
+    ├── ./utilities/catkin_simple
+    ├── ./utilities/LICENSE
+    ├── ./utilities/pose_utils
+    ├── ./utilities/quadrotor_msgs
+    ├── ./utilities/readme.md
+    ├── ./utilities/rviz_plugins
+    └── ./utilities/uav_utils
+```
 
 ## Debug
 
@@ -71,6 +125,7 @@ chmod 777 run.sh
 ```
 src/rotors_simulator/rotors_gazebo_plugins/src/gazebo_odometry_plugin.cpp:94:48: error: ‘CV_LOAD_IMAGE_GRAYSCALE’ was not declared in this scope
 ```
-把第94行`covariance_image_ = cv::imread(image_name, CV_LOAD_IMAGE_GRAYSCALE);` 后面改成 `cv::IMREAD_GRAYSCALE`
+
+这个是 OpenCV 版本问题。需要把第94行`covariance_image_ = cv::imread(image_name, CV_LOAD_IMAGE_GRAYSCALE);` 后面改成 `cv::IMREAD_GRAYSCALE`
 
 
