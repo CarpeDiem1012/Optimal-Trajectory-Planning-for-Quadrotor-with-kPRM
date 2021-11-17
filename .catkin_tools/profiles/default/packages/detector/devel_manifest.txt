@@ -1,0 +1,6 @@
+planner/ball_detect
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/detector/cmake.lock /home/siyuan/workspace/motion_planning_final_project/devel/./cmake.lock
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/detector/lib/libdetector.so /home/siyuan/workspace/motion_planning_final_project/devel/lib/libdetector.so
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/detector/lib/pkgconfig/detector.pc /home/siyuan/workspace/motion_planning_final_project/devel/lib/pkgconfig/detector.pc
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/detector/share/detector/cmake/detectorConfig.cmake /home/siyuan/workspace/motion_planning_final_project/devel/share/detector/cmake/detectorConfig.cmake
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/detector/share/detector/cmake/detectorConfig-version.cmake /home/siyuan/workspace/motion_planning_final_project/devel/share/detector/cmake/detectorConfig-version.cmake

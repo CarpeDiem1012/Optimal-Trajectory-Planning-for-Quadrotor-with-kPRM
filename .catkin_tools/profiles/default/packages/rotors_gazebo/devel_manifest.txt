@@ -1,0 +1,8 @@
+rotors_simulator/rotors_gazebo
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_gazebo/cmake.lock /home/siyuan/workspace/motion_planning_final_project/devel/./cmake.lock
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_gazebo/lib/pkgconfig/rotors_gazebo.pc /home/siyuan/workspace/motion_planning_final_project/devel/lib/pkgconfig/rotors_gazebo.pc
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_gazebo/lib/rotors_gazebo/hovering_example /home/siyuan/workspace/motion_planning_final_project/devel/lib/rotors_gazebo/hovering_example
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_gazebo/lib/rotors_gazebo/waypoint_publisher_file /home/siyuan/workspace/motion_planning_final_project/devel/lib/rotors_gazebo/waypoint_publisher_file
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_gazebo/lib/rotors_gazebo/waypoint_publisher /home/siyuan/workspace/motion_planning_final_project/devel/lib/rotors_gazebo/waypoint_publisher
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_gazebo/share/rotors_gazebo/cmake/rotors_gazeboConfig.cmake /home/siyuan/workspace/motion_planning_final_project/devel/share/rotors_gazebo/cmake/rotors_gazeboConfig.cmake
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_gazebo/share/rotors_gazebo/cmake/rotors_gazeboConfig-version.cmake /home/siyuan/workspace/motion_planning_final_project/devel/share/rotors_gazebo/cmake/rotors_gazeboConfig-version.cmake

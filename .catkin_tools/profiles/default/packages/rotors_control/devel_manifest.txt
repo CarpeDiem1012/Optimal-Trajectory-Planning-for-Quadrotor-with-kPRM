@@ -1,0 +1,9 @@
+rotors_simulator/rotors_control
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_control/cmake.lock /home/siyuan/workspace/motion_planning_final_project/devel/./cmake.lock
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_control/lib/libroll_pitch_yawrate_thrust_controller.so /home/siyuan/workspace/motion_planning_final_project/devel/lib/libroll_pitch_yawrate_thrust_controller.so
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_control/lib/liblee_position_controller.so /home/siyuan/workspace/motion_planning_final_project/devel/lib/liblee_position_controller.so
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_control/lib/pkgconfig/rotors_control.pc /home/siyuan/workspace/motion_planning_final_project/devel/lib/pkgconfig/rotors_control.pc
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_control/lib/rotors_control/lee_position_controller_node /home/siyuan/workspace/motion_planning_final_project/devel/lib/rotors_control/lee_position_controller_node
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_control/lib/rotors_control/roll_pitch_yawrate_thrust_controller_node /home/siyuan/workspace/motion_planning_final_project/devel/lib/rotors_control/roll_pitch_yawrate_thrust_controller_node
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_control/share/rotors_control/cmake/rotors_controlConfig.cmake /home/siyuan/workspace/motion_planning_final_project/devel/share/rotors_control/cmake/rotors_controlConfig.cmake
+/home/siyuan/workspace/motion_planning_final_project/devel/.private/rotors_control/share/rotors_control/cmake/rotors_controlConfig-version.cmake /home/siyuan/workspace/motion_planning_final_project/devel/share/rotors_control/cmake/rotors_controlConfig-version.cmake
