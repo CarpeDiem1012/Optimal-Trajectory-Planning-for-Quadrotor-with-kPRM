@@ -4,7 +4,7 @@
         {
             "label": "catkin build",
             "type": "shell",
-            "command": "catkin config --extend /opt/ros/melodic && catkin build -DCMAKE_BUILD_TYPE = Debug -j16",
+            "command": "catkin config --extend /opt/ros/noetic && catkin build -DCMAKE_BUILD_TYPE=Debug -j16",
             "group": {
                 "kind": "build",
                 "isDefault": true

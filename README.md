@@ -2,10 +2,11 @@
 用于项目所需,整理以下配置环境以避免重复劳动
 
 ## Overview
-**Gazebo**使用的模型配置环境:[rotors_simulator](https://github.com/ethz-asl/rotors_simulator)
-
-**Planner**:[ego-planner-swarm](https://github.com/ZJU-FAST-Lab/ego-planner-swarm),修改了traj_server以适应Gazebo的控制接口,规划时只启动了单机
-
+- **Gazebo** 使用的 ETHZ ASL 的模型配置环境:[rotors_simulator](https://github.com/ethz-asl/rotors_simulator)
+- **Planner**:[ego-planner-swarm](https://github.com/ZJU-FAST-Lab/ego-planner-swarm),修改了traj_server以适应Gazebo的控制接口,规划时只启动了单机。这部分是我们需要重写的。
+- **mav_msgs** is part of [**mav_comm**]( https://github.com/ethz-asl/mav_comm). 
+- **quadrotor_msgs** is part of [**rpg_quadrotor_common**](https://github.com/uzh-rpg/rpg_quadrotor_common).  Released by [Robotics and Perception Group](http://www.ifi.uzh.ch/en/rpg.html), it is  under a [MIT license](./LICENSE).
+- [**catkin simple**](https://github.com/catkin/catkin_simple) is a`catkin` package designed to make the `CMakeLists.txt` of other `catkin` packages simpler.
 
 ## Compilation
 
@@ -80,27 +81,29 @@ Vscode 插件安装参考[我的这篇知乎回答](https://zhuanlan.zhihu.com/p
 ## 接口说明
 1.**Planner**
 - Subscribers
-  - 位姿信息:`/hummingbird/odometry_sensor1/odometry`
-  - 深度图:`/hummingbird/vi_sensor/camera_depth/depth/disparity`
+  - 位姿信息:`/hummingbird/odometry_sensor1/odometry` 直接用了仿真平台提供的位姿信息。正常来说，应该需要一个 VIO 系统（或者动捕系统）提供位姿估计的。
+  - 深度图:`/hummingbird/vi_sensor/camera_depth/depth/disparity` 这一部分是这个 planner 所需要的信息。我们的 planner 可以直接使用全局地图信息，不需要读深度图。
   - 终点:`/hummingbird/goal`
 - Publishers
-  - 控制:`/hummingbird/command/trajectory`
+  - 控制:`/hummingbird/command/trajectory` planner 输出轨迹，此处轨迹应为 B 样条形式（一种特殊的多项式），我们自己实现的 planner 可以使用多项式轨迹。这一部分可以第三周之后完成。
 
 2. **Simulator**
 
+
+3. **Controller**
 
 ## 文件结构
 
 ```
 ├── ./CMakeLists.txt -> /opt/ros/noetic/share/catkin/cmake/toplevel.cmake
-├── ./mav_comm
+├── ./mav_comm  # MAV 通信的包
 │   ├── ./mav_comm/mav_comm
 │   ├── ./mav_comm/mav_msgs
 │   ├── ./mav_comm/mav_planning_msgs
 │   ├── ./mav_comm/mav_state_machine_msgs
 │   ├── ./mav_comm/mav_system_msgs
 │   └── ./mav_comm/README.md
-├── ./planner
+├── ./planner  # EGO-Planner-Swarm 一个轻量快速的规划器
 │   ├── ./planner/ball_detect
 │   ├── ./planner/bspline_opt
 │   ├── ./planner/drone_detect
@@ -109,10 +112,10 @@ Vscode 插件安装参考[我的这篇知乎回答](https://zhuanlan.zhihu.com/p
 │   ├── ./planner/plan_manage
 │   ├── ./planner/rosmsg_tcp_bridge
 │   └── ./planner/traj_utils
-├── ./rotors_simulator
+├── ./rotors_simulator  # 仿真的代码
 │   ├── ./rotors_simulator/README.md
 │   ├── ./rotors_simulator/rotors_comm
-│   ├── ./rotors_simulator/rotors_control
+│   ├── ./rotors_simulator/rotors_control   # 控制器
 │   ├── ./rotors_simulator/rotors_demos.rosinstall
 │   ├── ./rotors_simulator/rotors_description
 │   ├── ./rotors_simulator/rotors_evaluation
@@ -143,3 +146,8 @@ src/rotors_simulator/rotors_gazebo_plugins/src/gazebo_odometry_plugin.cpp:94:48:
 这个是 OpenCV 版本问题。需要把第94行`covariance_image_ = cv::imread(image_name, CV_LOAD_IMAGE_GRAYSCALE);` 后面改成 `cv::IMREAD_GRAYSCALE`
 
 
+### EGO planner
+
+EGO planner 这个规划器是用来演示效果和 debug simulator 的，不作为最后我们的成果展示。这个规划器通过前面的深度相机得到局部地图，局部地图探测到障碍物后将预定轨迹推离障碍物。这样做虽然快但是由于不规划 yaw 角，会导致潜在的碰撞问题（侧碰，倒碰）。
+
+使用 EGO planner 的时候，碰撞后会导致再次规划出现错误，无法规划轨迹。这是因为碰撞后 planner 会认为飞机已经位于障碍物中，无法找到可行解把飞机推离障碍物。
