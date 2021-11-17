@@ -78,6 +78,17 @@ Vscode 插件安装参考[我的这篇知乎回答](https://zhuanlan.zhihu.com/p
 
 > 如果使用 noetic 系统，需要将 .vscode 文件夹下面的所有东西都改成 noetic
 
+### 键盘控制
+
+如需要键盘控制，请参考 https://github.com/ethz-asl/rotors_simulator/wiki/Setup-virtual-keyboard-joystick 进行配置
+
+运行如下代码启动仿真环境
+```
+roslaunch rotors_gazebo simulator_with_keyboard.launch
+```
+
+目前遇到了找不到手柄的 bug 暂未解决。
+
 ## 接口说明
 1.**Planner**
 - Subscribers
